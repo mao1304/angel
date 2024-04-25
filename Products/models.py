@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-
+from Accounts.models import Account
 from Category.models import SubCategory
 
 class Product(models.Model):
@@ -21,3 +21,8 @@ class Product(models.Model):
     def __str__(self):
         return self.Product_name
 
+
+class Quotes(models.Model):
+    user = models.ForeignKey(Account,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
