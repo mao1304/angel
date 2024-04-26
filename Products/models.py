@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from Accounts.models import Account
-from Category.models import SubCategory
+from Category.models import SubCategory, Category
 
 class Product(models.Model):
     Product_name = models.CharField(max_length=200, unique=True)
@@ -10,6 +9,7 @@ class Product(models.Model):
     Description = models.CharField(max_length=500, blank=True)
     Images = models.CharField( max_length=250)
     Is_available = models.BooleanField(default=True)
+    Category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
     SubCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True)
     Created_date = models.DateTimeField( auto_now_add=True)
     Modified_date = models.DateTimeField( auto_now=True)
@@ -22,7 +22,3 @@ class Product(models.Model):
         return self.Product_name
 
 
-class Quotes(models.Model):
-    user = models.ForeignKey(Account,on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)

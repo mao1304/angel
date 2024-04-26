@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Accounts',
     'Category',
     'Products',
+    'quotation',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +107,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -127,6 +133,10 @@ STATIC_URL = 'static/'
 ## permissions for all cors origins
 CORS_ALLOW_ALL_ORIGINS = True 
 
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '73904674c19379'
+EMAIL_HOST_PASSWORD = '151de593a8ba46'
+EMAIL_PORT = '2525'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
