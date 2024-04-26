@@ -27,8 +27,8 @@ class ProductView(viewsets.ModelViewSet):
             Products = Product.objects.all().filter(Is_available=True)
         
         elif category_slug != None:
-             categories = get_object_or_404(Category, slug=category_slug)
-             Products = Product.objects.filter(Category=categories, is_available=True) 
+             categories = get_object_or_404(Category, Slug=category_slug)
+             Products = Product.objects.filter(Category=categories) 
          
         return Products
     

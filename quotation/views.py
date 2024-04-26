@@ -23,9 +23,13 @@ def _cart_id(request):
         cart = request.session.session_key 
     return cart
       
-@method_decorator(csrf_exempt, name='dispatch')
+# @method_decorator(csrf_exempt, name='dispatch')
 class add_cart(APIView):
     permission_classes = [IsAuthenticated]
+    
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
     def post(self, request):
         product_id = request.data.get('product_id')
         product = Product.objects.get(id=product_id)  
